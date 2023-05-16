@@ -20,11 +20,11 @@ class TestArrayActions(unittest.TestCase):
 
     def test_aliquot(self):
         """Test method that checks the correctness of the found multiple and non-multiple numbers"""
-        # unsorted array
-        arr = [1, 5, 6, 15, 18]
-        # array that satisfy the 3,5 aliquot conditions
-        aliqout_arr = [6, 18]
+        arr = [1, 5, 6, 15, 18] # unsorted array
+        aliqout_arr = [6, 18] # array that satisfy the 3,5 aliquot conditions
+
         # find selected aliquots
         arr = mod.find_aliquot(arr, 3, 5)
+        
         # two arrays equality comparing
         self.assertListEqual(arr, aliqout_arr)
