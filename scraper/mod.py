@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-# Get articles names
 def get_article_name(html, authors_list, datetimes):
     """ Function takes array with author names and matches them with articles titles"""
     soup = BeautifulSoup(html, 'lxml')
@@ -19,7 +18,6 @@ def get_article_name(html, authors_list, datetimes):
         i += 1
 
 
-# Get articles authors
 def get_article_author(html):
     """ Function finds name of all authors and adding it on array"""
     soup = BeautifulSoup(html, 'lxml')
@@ -31,7 +29,6 @@ def get_article_author(html):
     return authors_list
 
 
-# Get article date
 def get_article_date(html):
     """ Function finds date of all articles and adding it on array"""
     soup = BeautifulSoup(html, 'lxml')
@@ -42,7 +39,6 @@ def get_article_date(html):
     return datetimes
 
 
-# Returns page in txt
 def get_html(url):
     """ Function taking page by url and return it in txt"""
     result = requests.get(url)
