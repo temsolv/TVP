@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    count = 5 # Number of countries
+    count = 50 # Number of countries
 
     # Get html code from page
     html = requests.get("https://coronavirus-graph.ru/").text

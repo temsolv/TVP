@@ -21,7 +21,7 @@ def find_even(arr: list):
     return elem_even_index
 
 
-def compare_even(even: list, nums: list):
+def find_equal(even: list, nums: list):
     """Method that finds elements from even array, that equal to nums array"""
     equal = [] # List for equal elements
 

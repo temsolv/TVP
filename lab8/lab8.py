@@ -6,14 +6,14 @@
 __author__ = "Artem Solbonov"
 
 import numpy as np
-import mod
+import mod as m
 
 
 def main():
     nums = [] # Make empty list
 
     # Fill list with random numbers
-    mod.fill_list(nums)
+    m.fill_list(nums)
 
     n = int(input("Matrix range: "))
 
@@ -21,16 +21,16 @@ def main():
     matr = np.random.randint(20, size=(n, n))
 
     # Get list of elements with even index sum
-    even = mod.find_even(matr)
+    even = m.find_even(matr)
 
     # Find replaceable elements which are equals among the nums
-    equal = mod.compare_even(even, nums)
+    equal = m.find_equal(even, nums)
 
     print(f"\nElements that shoul be replaced by zero: {equal}")
     print(f"\nMatrix before: \n{matr}\n")
 
     # Replace elements in matrix by zero, if they equal to elements from replc list
-    mod.replace_equal(equal, matr)
+    m.replace_equal(equal, matr)
 
     print(f"Matrix after: \n{matr}") # Show matrix after replace operation
  
