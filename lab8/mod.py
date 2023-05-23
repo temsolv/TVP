@@ -10,7 +10,7 @@ def fill_list(arr: list):
 
 
 def find_even(arr: list):
-    """Function that finds elements in list with even index sum"""
+    """Method that finds elements in list with even index sum"""
     elem_even_index = [] # Elements list with even index
 
     # Append element to list if sum of indexes is even
@@ -18,12 +18,11 @@ def find_even(arr: list):
         for j in range(len(arr)):
             if (i + j) % 2 == 0:
                 elem_even_index.append(arr[i][j])
-
     return elem_even_index
 
 
 def compare_even(even: list, nums: list):
-    """Function that finds elements from even array, that equal to nums array"""
+    """Method that finds elements from even array, that equal to nums array"""
     equal = [] # List for equal elements
 
     # Append element to list if equality between lists is true
@@ -33,14 +32,12 @@ def compare_even(even: list, nums: list):
                 # Adding to the list, only if there is no element in it
                 if even[i] not in equal:
                     equal.append(even[i])
-
     return equal
 
 
 def replace_equal(replc: list, matr: list):
     """Function that replace finded elements in matrix,
     with even indexes that equals to nums by zero in matrix"""
-    # Replace elements in matrix by zero, if they equal to elements from replc list 
     for i in range(len(matr)):
         for j in range(len(matr)):
             for k in range(len(replc)):

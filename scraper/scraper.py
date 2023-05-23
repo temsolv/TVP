@@ -1,14 +1,19 @@
-__author__ = 'Artem Solbonov'
-import mod
+__author__ = "Artem Solbonov"
 
+import mod
+import requests
 
 def main():
-    html = mod.get_html('https://habr.com/ru/flows/develop/')
-    authors = mod.get_article_author(html)
-    dates = mod.get_article_date(html)
-    mod.get_article_name(html, authors, dates)
-    # extra.get_article_date(html)
+    # Get html code from page
+    html = requests.get("https://habr.com/ru/flows/develop/").text
 
+    # Get authors list
+    authors = mod.get_authors(html)
 
-if __name__ == '__main__':
-    main()
+    # Get dates list
+    dates = mod.get_dates(html)
+
+    # Show article information
+    mod.get_articles(html, authors, dates)
+
+main()

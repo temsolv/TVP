@@ -1,38 +1,32 @@
 __author__ = "Artem Solbonov"
 
 import requests
-from bs4 import BeautifulSoup
 import mod as m
 import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
 
 
 def main():
     count = 5 # Number of countries
 
-    # Get all html code from page
+    # Get html code from page
     html = requests.get("https://coronavirus-graph.ru/").text
 
-    # Get lists of countries and covid cases, count - countries number
+    # Get lists of countries, cases
     countries = m.get_countries(html, count)
     cases = m.get_cases(html, count)
 
-    # Change plot ui style and title
+    # Configure plot, style=plain disables exponent label
     plt.style.use('ggplot')
     plt.title("Количество людей, болеющих covid-19 сейчас")
-
-    # Configure the ScalarFormatter, useOffset not/show original numbers, style - on/off exponent
-    plt.ticklabel_format(useOffset=False, style='plain')
+    plt.ticklabel_format(style='plain')
 
     # Create horizontal bar plot, countries - y axis, cases - x axis
     plt.barh(countries, cases)
 
-    # Adding values in each plot lines by plt.text
-    for index, value in enumerate(cases):
-        plt.text(value, index, str(value))
+    # Add value in each plot line
+    m.plot_values(plt, cases)
 
-    # Building plot
+    # Show plot
     plt.show()
 
 main()

@@ -1,45 +1,45 @@
-__author__ = 'Artem Solbonov'
+__author__ = "Artem Solbonov"
+
 import requests
 from bs4 import BeautifulSoup
 
 
-def get_article_name(html, authors_list, datetimes):
-    """ Function takes array with author names and matches them with articles titles"""
-    soup = BeautifulSoup(html, 'lxml')
-    articles = soup.find_all('a', class_='tm-article-snippet__title-link')
-    i = 0
-    for article in articles:
-        article_name = article.find('span').text
-        print("Article:", i)
-        print("Author:", authors_list[i])
-        print("Title:", article_name)
-        print("Date:", datetimes[i])
-        print("------------------------------------------------------")
-        i += 1
+def get_articles(html, authors, dates):
+    """ Function takes array with authors, dates and matches them with articles titles"""
+
+    soup = BeautifulSoup(html, 'lxml') # Object of bs4 for scpapping
+    articles = soup.find_all("a", class_="tm-title__link") # List of tags with selected class
+
+    # Display info about article, author, date. Span.text - each article title
+    for i, v in enumerate(articles):
+        title = v.find("span").text
+        print("\n", "Название: ", title, "\n",
+              "Автор: ",authors[i].strip(), "\n",
+              "Дата:", dates[i].strip(), "\n"*2)
 
 
-def get_article_author(html):
-    """ Function finds name of all authors and adding it on array"""
-    soup = BeautifulSoup(html, 'lxml')
-    authors = soup.find_all('a', class_='tm-user-info__username')
-    authors_list = []
-    for author in authors:
-        author_name = str(author.text)
-        authors_list.append(str(author_name))
-    return authors_list
+def get_authors(html):
+    """ Method that finds name of all authors and adding it on array, then return it"""
+
+    soup = BeautifulSoup(html, 'lxml') # Object of bs4 for scpapping
+    authors_tags = soup.find_all('a', class_='tm-user-info__username') # List of tags with selected class
+    authors = [] # List of getted authors
+
+    # Add each author name converted so string, in list
+    for author in authors_tags:
+        name = str(author.text)
+        authors.append(str(name))
+    return authors
 
 
-def get_article_date(html):
-    """ Function finds date of all articles and adding it on array"""
-    soup = BeautifulSoup(html, 'lxml')
-    times = soup.find_all('time')
-    datetimes = []
-    for time in times:
-        datetimes.append(time['title'])
-    return datetimes
+def get_dates(html):
+    """ Method that finds date of all articles and adding it on array, then return it"""
 
+    soup = BeautifulSoup(html, 'lxml') # Object of bs4 for scpapping
+    dates_tag = soup.find_all('time') # List of every time tags
+    dates = [] # List of getted dates
 
-def get_html(url):
-    """ Function taking page by url and return it in txt"""
-    result = requests.get(url)
-    return result.text
+    # Add each date to list
+    for date in dates_tag:
+        dates.append(date['title'])
+    return dates

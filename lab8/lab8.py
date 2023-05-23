@@ -33,7 +33,5 @@ def main():
     mod.replace_equal(equal, matr)
 
     print(f"Matrix after: \n{matr}") # Show matrix after replace operation
-
  
-# Programm entry point
 main()
